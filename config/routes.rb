@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root "home#index"
-  resources :degrees
   resources :klasses
-  resources :teachers
+  resources :teachers do
+    resources :degrees
+  end
   resources :students
 end

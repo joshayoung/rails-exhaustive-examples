@@ -15,6 +15,7 @@ class DegreesController < ApplicationController
   # GET /degrees/new
   def new
     @degree = Degree.new
+    @teacher = Teacher.find(params[:teacher_id])
   end
 
   # GET /degrees/1/edit
@@ -24,11 +25,12 @@ class DegreesController < ApplicationController
   # POST /degrees
   # POST /degrees.json
   def create
-    @degree = Degree.new(degree_params)
+    teacher = Teacher.find(params[:teacher_id])
+    @degree = teacher.degrees.new(degree_params)
 
     respond_to do |format|
       if @degree.save
-        format.html { redirect_to @degree, notice: 'Degree was successfully created.' }
+        format.html { redirect_to root_url, notice: 'Degree was successfully created.' }
         format.json { render :show, status: :created, location: @degree }
       else
         format.html { render :new }
