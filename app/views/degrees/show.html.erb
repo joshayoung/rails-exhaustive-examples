@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @degree.title %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @degree.level %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @degree.completed %>
+</p>
+
+<%= link_to 'Edit', edit_degree_path(@degree) %> |
+<%= link_to 'Back', degrees_path %>
