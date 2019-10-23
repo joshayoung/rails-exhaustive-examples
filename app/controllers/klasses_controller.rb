@@ -15,6 +15,7 @@ class KlassesController < ApplicationController
   # GET /klasses/new
   def new
     @klass = Klass.new
+    @teacher = Teacher.find(params[:teacher_id])
   end
 
   # GET /klasses/1/edit
@@ -24,11 +25,12 @@ class KlassesController < ApplicationController
   # POST /klasses
   # POST /klasses.json
   def create
-    @klass = Klass.new(klass_params)
+    teacher = Teacher.find(params[:teacher_id])
+    @klass = teacher.klasses.new(klass_params)
 
     respond_to do |format|
       if @klass.save
-        format.html { redirect_to @klass, notice: 'Klass was successfully created.' }
+        format.html { redirect_to root_url, notice: 'Klass was successfully created.' }
         format.json { render :show, status: :created, location: @klass }
       else
         format.html { render :new }
