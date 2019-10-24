@@ -18,14 +18,10 @@
         <td><%= klass.name %></td>
         <td><%= klass.time %></td>
         <td><%= klass.level %></td>
-        <td><%= link_to 'Show', klass %></td>
-        <td><%= link_to 'Edit', edit_klass_path(klass) %></td>
-        <td><%= link_to 'Destroy', klass, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= klass.teacher.name %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Klass', new_klass_path %>

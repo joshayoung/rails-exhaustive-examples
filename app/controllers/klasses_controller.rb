@@ -4,7 +4,7 @@ class KlassesController < ApplicationController
   # GET /klasses
   # GET /klasses.json
   def index
-    @klasses = Klass.all
+    @klasses = Klass.where(teacher_id: params[:teacher_id])
   end
 
   # GET /klasses/1
