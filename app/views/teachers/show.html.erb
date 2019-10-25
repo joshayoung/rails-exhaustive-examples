@@ -17,5 +17,19 @@
 <% end %>
 </ul>
 
+<p>Classes:</p>
+<ul>
+  <% @klasses.each do |s| %>
+    <li><%= s.name %></li>
+  <% end %>
+</ul>
+
+<p>Degrees:</p>
+<ul>
+  <% @degrees.each do |s| %>
+    <li><%= s.title %></li>
+  <% end %>
+</ul>
+
 <%= link_to 'Edit', edit_teacher_path(@teacher) %> |
 <%= link_to 'Back', teachers_path %>

@@ -10,9 +10,9 @@ class TeachersController < ApplicationController
   # GET /teachers/1
   # GET /teachers/1.json
   def show
-    @students = Teacher.find_by_sql("select distinct students.name from registrars
-                        join students on registrars.student_id = students.id
-                        where klass_id in ( select id from klasses where teacher_id = 1)")
+    @students = Teacher.students(params[:id])
+    @klasses = Teacher.find(params[:id]).klasses
+    @degrees = Teacher.find(params[:id]).degrees
   end
 
   # GET /teachers/new
