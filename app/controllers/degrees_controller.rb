@@ -9,8 +9,7 @@ class DegreesController < ApplicationController
 
   # GET /degrees/1
   # GET /degrees/1.json
-  def show
-  end
+  def show; end
 
   # GET /degrees/new
   def new
@@ -19,8 +18,7 @@ class DegreesController < ApplicationController
   end
 
   # GET /degrees/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /degrees
   # POST /degrees.json

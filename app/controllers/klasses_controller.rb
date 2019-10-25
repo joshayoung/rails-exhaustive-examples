@@ -9,8 +9,7 @@ class KlassesController < ApplicationController
 
   # GET /klasses/1
   # GET /klasses/1.json
-  def show
-  end
+  def show; end
 
   # GET /klasses/new
   def new
