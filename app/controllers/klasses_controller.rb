@@ -1,5 +1,5 @@
 class KlassesController < ApplicationController
-  before_action :set_klass, only: [:show, :edit, :update, :destroy]
+  before_action :set_klass, only: %w(show edit update destroy)
 
   # GET /klasses
   # GET /klasses.json
@@ -18,18 +18,17 @@ class KlassesController < ApplicationController
   end
 
   # GET /klasses/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /klasses
   # POST /klasses.json
-  def create
+  def create # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
     teacher = Teacher.find(params[:teacher_id])
     @klass = teacher.klasses.new(klass_params)
 
     respond_to do |format|
       if @klass.save
-        format.html { redirect_to root_url, notice: 'Klass was successfully created.' }
+        format.html { redirect_to root_url, notice: "Class was successfully created." }
         format.json { render :show, status: :created, location: @klass }
       else
         format.html { render :new }
@@ -43,7 +42,7 @@ class KlassesController < ApplicationController
   def update
     respond_to do |format|
       if @klass.update(klass_params)
-        format.html { redirect_to @klass, notice: 'Klass was successfully updated.' }
+        format.html { redirect_to @klass, notice: "Class was successfully updated." }
         format.json { render :show, status: :ok, location: @klass }
       else
         format.html { render :edit }
@@ -57,19 +56,20 @@ class KlassesController < ApplicationController
   def destroy
     @klass.destroy
     respond_to do |format|
-      format.html { redirect_to klasses_url, notice: 'Klass was successfully destroyed.' }
+      format.html { redirect_to klasses_url, notice: "Class was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_klass
-      @klass = Klass.find(params[:id])
-    end
+private
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def klass_params
-      params.require(:klass).permit(:name, :time, :level)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_klass
+    @klass = Klass.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def klass_params
+    params.require(:klass).permit(:name, :time, :level)
+  end
 end

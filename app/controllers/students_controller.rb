@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: [:show, :edit, :update, :destroy]
+  before_action :set_student, only: %w(show edit update destroy)
 
   # GET /students
   # GET /students.json
@@ -28,7 +28,7 @@ class StudentsController < ApplicationController
 
     respond_to do |format|
       if @student.save
-        format.html { redirect_to @student, notice: 'Student was successfully created.' }
+        format.html { redirect_to @student, notice: "Student was successfully created." }
         format.json { render :show, status: :created, location: @student }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class StudentsController < ApplicationController
   def update
     respond_to do |format|
       if @student.update(student_params)
-        format.html { redirect_to @student, notice: 'Student was successfully updated.' }
+        format.html { redirect_to @student, notice: "Student was successfully updated." }
         format.json { render :show, status: :ok, location: @student }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class StudentsController < ApplicationController
   def destroy
     @student.destroy
     respond_to do |format|
-      format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
+      format.html { redirect_to students_url, notice: "Student was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -71,19 +71,19 @@ class StudentsController < ApplicationController
     klass = Klass.find(params[:klass_id])
     registrar.klass = klass
     registrar.student = student
-    if registrar.save
-      redirect_to root_url
-    end
+
+    redirect_to root_url if registrar.save
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_student
-      @student = Student.find(params[:id])
-    end
+private
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def student_params
-      params.require(:student).permit(:name, :average_grade, :class_of)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_student
+    @student = Student.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def student_params
+    params.require(:student).permit(:name, :average_grade, :class_of)
+  end
 end
