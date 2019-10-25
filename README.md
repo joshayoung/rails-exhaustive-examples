@@ -22,5 +22,6 @@
 * Data Types: https://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/SchemaStatements.html#method-i-add_column
 * Nested Routes with `form_with`: https://stackoverflow.com/questions/46919115/nested-resources-w-rails-5-1-form-with
 * Associations: https://guides.rubyonrails.org/association_basics.html
+* Rspec: https://github.com/rspec/rspec-rails
 
 ## To Do:
