@@ -15,5 +15,12 @@
   <%= @student.class_of %>
 </p>
 
+<p>Classes:</p>
+<ul>
+<% @klasses.each do |c| %>
+  <li><%= c.name %></li>
+<% end %>
+</ul>
+
 <%= link_to 'Edit', edit_student_path(@student) %> |
 <%= link_to 'Back', students_path %>

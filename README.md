@@ -11,7 +11,19 @@
 ## Generation Commands:
 * rails g controller home
 
+## Association Examples:
+* `teacher = Teacher.find(1)`
+* `teacher.students` (many-to-many through registrations)
+* `teacher.klasses` (one-to-many)
+* `teacher.degrees` (one-to-many)
+* `student = Student.find(1)`
+* `student.teachers` (many-to-many through registrations)
+* `student.klasses` (many-to-many through registrars)
+
 ## References:
 * Data Types: https://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/SchemaStatements.html#method-i-add_column
 * Nested Routes with `form_with`: https://stackoverflow.com/questions/46919115/nested-resources-w-rails-5-1-form-with
 * Associations: https://guides.rubyonrails.org/association_basics.html
+
+## To Do:
+* Remove the relation for student - teacher (registration).

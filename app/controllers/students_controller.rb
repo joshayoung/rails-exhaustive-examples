@@ -10,6 +10,7 @@ class StudentsController < ApplicationController
   # GET /students/1
   # GET /students/1.json
   def show
+    @klasses = Student.find(params[:id]).klasses
   end
 
   # GET /students/new
@@ -58,6 +59,21 @@ class StudentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def new_classes
+    @classes = Klass.all
+  end
+
+  def add_classes
+    registrar = Registrar.new
+    student = Student.find(params[:id])
+    klass = Klass.find(params[:klass_id])
+    registrar.klass = klass
+    registrar.student = student
+    if registrar.save
+      redirect_to root_url
     end
   end
 

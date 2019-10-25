@@ -10,5 +10,12 @@
   <%= @teacher.age %>
 </p>
 
+<p>Students:</p>
+<ul>
+<% @students.each do |s| %>
+  <li><%= s.name %></li>
+<% end %>
+</ul>
+
 <%= link_to 'Edit', edit_teacher_path(@teacher) %> |
 <%= link_to 'Back', teachers_path %>

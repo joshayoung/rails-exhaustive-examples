@@ -10,11 +10,21 @@ class TeachersController < ApplicationController
   # GET /teachers/1
   # GET /teachers/1.json
   def show
+    @students = Teacher.find_by_sql("select distinct students.name from registrars
+                        join students on registrars.student_id = students.id
+                        where klass_id in ( select id from klasses where teacher_id = 1)")
   end
 
   # GET /teachers/new
   def new
     @teacher = Teacher.new
+  end
+
+  def teachers_students
+    @teacher = Teacher.find(params[:id])
+    @students = Teacher.find_by_sql("select distinct students.name from registrars
+                        join students on registrars.student_id = students.id
+                        where klass_id in ( select id from klasses where teacher_id = 1)")
   end
 
   # GET /teachers/1/edit

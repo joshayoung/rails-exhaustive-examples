@@ -3,6 +3,14 @@ Rails.application.routes.draw do
   resources :teachers do
     resources :degrees
     resources :klasses
+    member do
+      get "teachers_students"
+    end
   end
-  resources :students
+  resources :students do
+    member do
+      get "new_classes"
+      post "add_classes"
+    end
+  end
 end

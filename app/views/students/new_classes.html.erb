@@ -1,0 +1,11 @@
+<p>Select a Class</p>
+<form method='post' action='<%= add_classes_student_path(params[:id]) %>'>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <select name='klass_id'>
+    <option></option>
+    <% @classes.each do |c| %>
+      <option value="<%= c.id %>"><%= c.name %></option>
+    <% end %>
+  </select>
+  <input type='submit' value="submit" />
+</form>
