@@ -13,11 +13,9 @@
 
 ## Association Examples:
 * `teacher = Teacher.find(1)`
-* `teacher.students` (many-to-many through registrations)
 * `teacher.klasses` (one-to-many)
 * `teacher.degrees` (one-to-many)
 * `student = Student.find(1)`
-* `student.teachers` (many-to-many through registrations)
 * `student.klasses` (many-to-many through registrars)
 
 ## References:
@@ -26,4 +24,3 @@
 * Associations: https://guides.rubyonrails.org/association_basics.html
 
 ## To Do:
-* Remove the relation for student - teacher (registration).
