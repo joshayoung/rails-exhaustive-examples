@@ -25,3 +25,4 @@
 * Rspec: https://github.com/rspec/rspec-rails
 
 ## To Do:
+Why is `local: true` required for the validations to render on the form with 'render :new'

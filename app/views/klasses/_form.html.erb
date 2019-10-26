@@ -1,14 +1,16 @@
-<%= form_with(model: @klass, url: [@teacher, @klass]) do |form| %>
-  <% if klass.errors.any? %>
+<%= form_with(model: @klass, url: [@teacher, @klass], local: true) do |form| %>
+  <% if @klass.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(klass.errors.count, "error") %> prohibited this klass from being saved:</h2>
+      <h2><%= pluralize(@klass.errors.count, "error") %> prohibited this klass from being saved:</h2>
 
       <ul>
-      <% klass.errors.full_messages.each do |message| %>
+      <% @klass.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
+  <% else %>
+  <p>no errors</p>
   <% end %>
 
   <div class="field">

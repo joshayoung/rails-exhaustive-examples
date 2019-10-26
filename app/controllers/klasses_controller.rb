@@ -23,16 +23,20 @@ class KlassesController < ApplicationController
   # POST /klasses
   # POST /klasses.json
   def create # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
-    teacher = Teacher.find(params[:teacher_id])
-    @klass = teacher.klasses.new(klass_params)
+    @teacher = Teacher.find(params[:teacher_id])
+    @klass = @teacher.klasses.new(klass_params)
 
     respond_to do |format|
       if @klass.save
         format.html { redirect_to root_url, notice: "Class was successfully created." }
         format.json { render :show, status: :created, location: @klass }
       else
-        format.html { render :new }
-        format.json { render json: @klass.errors, status: :unprocessable_entity }
+        format.html do
+          render :new
+        end
+        format.json do
+          render json: @klass.errors, status: :unprocessable_entity
+        end
       end
     end
   end

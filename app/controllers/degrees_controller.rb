@@ -1,4 +1,5 @@
 class DegreesController < ApplicationController
+  before_action :new_up, only: %w(new)
   before_action :set_degree, only: %w(show edit update destroy)
 
   # GET /degrees
@@ -23,8 +24,8 @@ class DegreesController < ApplicationController
   # POST /degrees
   # POST /degrees.json
   def create # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
-    teacher = Teacher.find(params[:teacher_id])
-    @degree = teacher.degrees.new(degree_params)
+    @teacher = Teacher.find(params[:teacher_id])
+    @degree = @teacher.degrees.new(degree_params)
 
     respond_to do |format|
       if @degree.save
@@ -66,6 +67,12 @@ private
   # Use callbacks to share common setup or constraints between actions.
   def set_degree
     @degree = Degree.find(params[:id])
+    @teacher = Teacher.find(params[:teacher_id])
+  end
+
+  def new_up
+    @degree = Degree.new
+    @teacher = Teacher.find(params[:teacher_id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
