@@ -12,9 +12,27 @@ teachers = Teacher.create([
   { name: "Sue", age: 27 }
 ])
 
-Degree.create(title: "Doctorate of History", level: 3, completed: Date.today - 10.years, teacher: teachers.first)
-Degree.create(title: "Bachelor of Science", level: 1, completed: Date.today - 4.years, teacher: teachers[1])
-Degree.create(title: "Masters of Arts", level: 3, completed: Date.today - 6.years, teacher: teachers[2])
+Degree.create(
+  title: "Doctorate of History",
+  level: 3,
+  completed: Date.today - 10.years,
+  from: "Washington University",
+  teacher: teachers.first
+)
+Degree.create(
+  title: "Bachelor of Science",
+  level: 1,
+  completed: Date.today - 4.years,
+  from: "Columbia",
+  teacher: teachers[1]
+)
+Degree.create(
+  title: "Masters of Arts",
+  level: 3,
+  completed: Date.today - 6.years,
+  from: "Georgia State",
+  teacher: teachers[2]
+)
 
 students = Student.create([
   { name: "James", average_grade: 91, class_of: Date.today + 3.years },
