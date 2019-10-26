@@ -6,6 +6,7 @@ class Teacher < ApplicationRecord
 
   validates :age, numericality: { only_integer: true }
 
+
   def self.students(teacher_id)
     find_by_sql("select distinct students.name from registrars
                 join students on registrars.student_id = students.id
