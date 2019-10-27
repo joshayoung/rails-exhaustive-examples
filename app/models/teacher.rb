@@ -6,6 +6,8 @@ class Teacher < ApplicationRecord
 
   validates :age, numericality: { only_integer: true }
 
+  scope :max_age, -> { maximum(:age) }
+  scope :min_age, -> { minimum(:age) }
 
   def self.students(teacher_id)
     find_by_sql("select distinct students.name from registrars

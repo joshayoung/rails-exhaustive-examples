@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root "home#index"
+  get "stats", to: "statistics#index"
+
   resources :teachers do
     resources :degrees
     resources :klasses
