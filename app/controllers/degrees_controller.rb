@@ -1,10 +1,11 @@
 class DegreesController < ApplicationController
-  before_action :new_up, only: %w(new)
   before_action :set_degree, only: %w(show edit update destroy)
 
-  def index
-    @degrees = Degree.all
-  end
+  helper_method :degree
+  helper_method :degrees
+  helper_method :teacher
+
+  def index; end
 
   def show; end
 
@@ -21,7 +22,7 @@ class DegreesController < ApplicationController
 
     respond_to do |format|
       if @degree.save
-        format.html { redirect_to root_url, notice: "Degree was successfully created." }
+        format.html { redirect_to teacher_degrees_url(teacher), notice: "Degree was successfully created." }
         format.json { render :show, status: :created, location: @degree }
       else
         format.html { render :new }
@@ -33,7 +34,7 @@ class DegreesController < ApplicationController
   def update
     respond_to do |format|
       if @degree.update(degree_params)
-        format.html { redirect_to @degree, notice: "Degree was successfully updated." }
+        format.html { redirect_to teacher_degrees_url(teacher, degree), notice: "Degree was successfully updated." }
         format.json { render :show, status: :ok, location: @degree }
       else
         format.html { render :edit }
@@ -43,22 +44,34 @@ class DegreesController < ApplicationController
   end
 
   def destroy
+    # The before_destroy callback is not working:
+    if !@degree.last_degree?
+      return redirect_to teacher_degrees_url(teacher), notice: "Last degree cannot be deleted!"
+    end
+
     @degree.destroy
     respond_to do |format|
-      format.html { redirect_to degrees_url, notice: "Degree was successfully destroyed." }
+      format.html { redirect_to teacher_degrees_url(teacher), notice: "Degree was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
 private
 
-  def set_degree
-    @degree = Degree.find(params[:id])
-    @teacher = Teacher.find(params[:teacher_id])
+  def degree
+    teacher.degrees
   end
 
-  def new_up
-    @degree = Degree.new
+  def degrees
+    Degree.all
+  end
+
+  def teacher
+    Teacher.find(params[:teacher_id])
+  end
+
+  def set_degree
+    @degree = Degree.find(params[:id])
     @teacher = Teacher.find(params[:teacher_id])
   end
 

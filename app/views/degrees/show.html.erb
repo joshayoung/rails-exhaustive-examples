@@ -15,5 +15,5 @@
   <%= @degree.completed %>
 </p>
 
-<%= link_to 'Edit', edit_degree_path(@degree) %> |
-<%= link_to 'Back', degrees_path %>
+<%= link_to 'Edit', edit_teacher_degree_path(teacher, @degree) %> |
+<%= link_to 'Back', teacher_degrees_path(teacher) %>

@@ -1,4 +1,5 @@
 class Degree < ApplicationRecord
+  # before_destroy :last_degree?
   belongs_to :teacher
 
   before_validation :capitilze_each_word
@@ -13,6 +14,14 @@ class Degree < ApplicationRecord
   validates :level, numericality: { only_integer: true }
 
   validate :completed_date_not_in_future
+
+  def last_degree?
+    number_of_degrees > 1
+  end
+
+  def number_of_degrees
+    Degree.joins(:teacher).where(teacher_id: teacher_id).count
+  end
 
 private
 
