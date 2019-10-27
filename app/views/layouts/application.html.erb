@@ -10,12 +10,13 @@
   </head>
 
   <body>
-  <nav>
-    <ul>
-
-      <li><a href="/">Home</a></li>
-    </ul>
-  </nav>
+    <nav>
+      <ul class="nav">
+        <li><%= link_to "Home", stats_path %></li>
+        <li><%= link_to "Teachers", teachers_path %></li>
+        <li><%= link_to "Students", students_path %></li>
+      </ul>
+    </nav>
     <%= yield %>
   </body>
 </html>

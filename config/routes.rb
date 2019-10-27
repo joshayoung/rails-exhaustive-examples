@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "home#index"
+  root "statistics#index"
   get "stats", to: "statistics#index"
 
   resources :teachers do
