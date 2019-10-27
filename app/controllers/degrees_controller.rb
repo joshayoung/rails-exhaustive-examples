@@ -2,27 +2,19 @@ class DegreesController < ApplicationController
   before_action :new_up, only: %w(new)
   before_action :set_degree, only: %w(show edit update destroy)
 
-  # GET /degrees
-  # GET /degrees.json
   def index
     @degrees = Degree.all
   end
 
-  # GET /degrees/1
-  # GET /degrees/1.json
   def show; end
 
-  # GET /degrees/new
   def new
     @degree = Degree.new
     @teacher = Teacher.find(params[:teacher_id])
   end
 
-  # GET /degrees/1/edit
   def edit; end
 
-  # POST /degrees
-  # POST /degrees.json
   def create # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
     @teacher = Teacher.find(params[:teacher_id])
     @degree = @teacher.degrees.new(degree_params)
@@ -38,8 +30,6 @@ class DegreesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /degrees/1
-  # PATCH/PUT /degrees/1.json
   def update
     respond_to do |format|
       if @degree.update(degree_params)
@@ -52,8 +42,6 @@ class DegreesController < ApplicationController
     end
   end
 
-  # DELETE /degrees/1
-  # DELETE /degrees/1.json
   def destroy
     @degree.destroy
     respond_to do |format|
@@ -64,7 +52,6 @@ class DegreesController < ApplicationController
 
 private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_degree
     @degree = Degree.find(params[:id])
     @teacher = Teacher.find(params[:teacher_id])
@@ -75,7 +62,6 @@ private
     @teacher = Teacher.find(params[:teacher_id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def degree_params
     params.require(:degree).permit(:title, :level, :completed)
   end
