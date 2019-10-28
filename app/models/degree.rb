@@ -16,9 +16,7 @@ class Degree < ApplicationRecord
   validate :completed_date_not_in_future
 
   def last_degree?
-    if !(number_of_degrees > 1)
-      throw(:abort)
-    end
+    throw(:abort) if !(number_of_degrees > 1)
   end
 
   def number_of_degrees

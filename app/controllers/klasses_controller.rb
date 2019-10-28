@@ -46,9 +46,10 @@ class KlassesController < ApplicationController
   end
 
   def destroy
+    binding.pry
     @klass.destroy
     respond_to do |format|
-      format.html { redirect_to klasses_url, notice: "Class was successfully destroyed." }
+      format.html { redirect_to teacher_klasses_path(@klass.teacher_id), notice: "Class was successfully destroyed." }
       format.json { head :no_content }
     end
   end

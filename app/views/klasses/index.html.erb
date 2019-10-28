@@ -19,6 +19,7 @@
         <td><%= klass.time %></td>
         <td><%= klass.level %></td>
         <td><%= klass.teacher.name %></td>
+        <td><%= link_to "Remove Class", teacher_klass_path(klass.teacher_id, klass.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
