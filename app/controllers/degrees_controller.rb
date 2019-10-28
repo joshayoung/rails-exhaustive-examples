@@ -44,15 +44,13 @@ class DegreesController < ApplicationController
   end
 
   def destroy
-    # The before_destroy callback is not working:
-    if !@degree.last_degree?
-      return redirect_to teacher_degrees_url(teacher), notice: "Last degree cannot be deleted!"
-    end
-
-    @degree.destroy
-    respond_to do |format|
-      format.html { redirect_to teacher_degrees_url(teacher), notice: "Degree was successfully destroyed." }
-      format.json { head :no_content }
+    if @degree.destroy
+      respond_to do |format|
+        format.html { redirect_to teacher_degrees_url(teacher), notice: "Degree was successfully destroyed." }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to teacher_degrees_url(teacher), notice: "You cannot delete the last degree"
     end
   end
 
