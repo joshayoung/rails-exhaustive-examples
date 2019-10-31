@@ -14,4 +14,8 @@ class Teacher < ApplicationRecord
                 join students on registrars.student_id = students.id
                 where klass_id in ( select id from klasses where teacher_id = #{teacher_id})")
   end
+
+  def age_i
+    age.to_i
+  end
 end

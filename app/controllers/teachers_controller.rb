@@ -61,7 +61,7 @@ class TeachersController < ApplicationController
 private
 
   def set_teacher
-    @teacher = Teacher.find(params[:id])
+    @teacher = TeacherDecorator.new(Teacher.find(params[:id]))
   end
 
   def teacher_params
