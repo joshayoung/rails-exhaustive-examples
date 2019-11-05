@@ -9,20 +9,20 @@ class StatisticPresenter < SimpleDelegator
   end
 
   def teacher_degrees
-    if teachers_with_most_degrees
-      h.content_tag(:li, "Teacher with most degrees: #{teachers_with_most_degrees}")
-    end
+    return h.content_tag(:li, "No Degrees") unless teachers_with_most_degrees.present?
+
+    h.content_tag(:li, "Teacher with most degrees: #{teachers_with_most_degrees}")
   end
 
   def students_all
-    if students
-      h.content_tag(:li, "Total number of students: #{students}")
-    end
+    return h.content_tag(:li, "No Students") unless students.positive?
+
+    h.content_tag(:li, "Total number of students: #{students}")
   end
 
   def teachers_all
-    if teachers
-      h.content_tag(:li, "Total number of teachers: #{teachers}")
-    end
+    return h.content_tag(:li, "No Teachers") unless teachers.positive?
+
+    h.content_tag(:li, "Total number of teachers: #{teachers}")
   end
 end
