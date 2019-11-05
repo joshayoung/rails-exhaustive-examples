@@ -4,11 +4,11 @@ class Statistic
       .where(teacher_id: teacher_id).count
   end
 
-  def self.students
+  def students
     Student.all.count
   end
 
-  def self.teachers
+  def teachers
     Teacher.all.count
   end
 

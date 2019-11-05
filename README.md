@@ -26,3 +26,4 @@
 
 ## To Do:
 Why is `local: true` required for the validations to render on the form with 'render :new'
+Add delete cascade to the relationships that need them.

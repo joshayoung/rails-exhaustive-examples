@@ -1,9 +1,25 @@
 class StatisticsController < ApplicationController
-    def index
-      @teacher_degrees = StatisticPresenter.new(
-        Statistic.new, view_context
-      ).teacher_degrees
-      @students = Statistic.students
-      @teachers = Statistic.teachers
-    end
+  helper_method :students, :teachers, :teacher_degrees
+
+  def index; end
+
+private
+
+  def teacher_degrees
+    statsp.teacher_degrees
   end
+
+  def teachers
+    statsp.teachers_all
+  end
+
+  def students
+    statsp.students_all
+  end
+
+  def statsp
+    StatisticPresenter.new(
+      Statistic.new, view_context
+    )
+  end
+end
