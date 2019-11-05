@@ -1,6 +1,8 @@
 class StatisticsController < ApplicationController
     def index
-      @degree_count = Statistic.teachers_with_most_degrees
+      @teacher_degrees = StatisticPresenter.new(
+        Statistic.new, view_context
+      ).teacher_degrees
       @students = Statistic.students
       @teachers = Statistic.teachers
     end
