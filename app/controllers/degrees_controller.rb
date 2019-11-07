@@ -20,35 +20,24 @@ class DegreesController < ApplicationController
     @teacher = Teacher.find(params[:teacher_id])
     @degree = @teacher.degrees.new(degree_params)
 
-    respond_to do |format|
-      if @degree.save
-        format.html { redirect_to teacher_degrees_url(teacher), notice: "Degree was successfully created." }
-        format.json { render :show, status: :created, location: @degree }
-      else
-        format.html { render :new }
-        format.json { render json: @degree.errors, status: :unprocessable_entity }
-      end
+    if @degree.save
+      redirect_to teacher_degrees_url(teacher), notice: "Degree was successfully created."
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @degree.update(degree_params)
-        format.html { redirect_to teacher_degrees_url(teacher, degree), notice: "Degree was successfully updated." }
-        format.json { render :show, status: :ok, location: @degree }
-      else
-        format.html { render :edit }
-        format.json { render json: @degree.errors, status: :unprocessable_entity }
-      end
+    if @degree.update(degree_params)
+      redirect_to teacher_degrees_url(teacher, degree), notice: "Degree was successfully updated."
+    else
+      render :edit
     end
   end
 
   def destroy
     if @degree.destroy
-      respond_to do |format|
-        format.html { redirect_to teacher_degrees_url(teacher), notice: "Degree was successfully destroyed." }
-        format.json { head :no_content }
-      end
+      redirect_to teacher_degrees_url(teacher), notice: "Degree was successfully destroyed."
     else
       redirect_to teacher_degrees_url(teacher), notice: "You cannot delete the last degree"
     end
