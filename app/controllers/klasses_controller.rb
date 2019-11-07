@@ -1,50 +1,63 @@
 class KlassesController < ApplicationController
-  before_action :set_klass, only: %w(show edit update destroy)
+  # TODO: Distinguish between new class and class lookup?
+  helper_method :klass, :klasses, :teacher
 
-  def index
-    @klasses = Klass.where(teacher_id: params[:teacher_id])
-  end
-
+  def index; end
   def show; end
 
   def new
     @klass = Klass.new
-    @teacher = Teacher.find(params[:teacher_id])
   end
 
   def edit; end
 
-  def create # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+  def create
     @teacher = Teacher.find(params[:teacher_id])
     @klass = @teacher.klasses.new(klass_params)
-
-      if @klass.save
-        redirect_to root_url, notice: "Class was successfully created."
-      else
-        render :new
-      end
+    if @klass.save
+      redirect_to root_url, notice: "Class was successfully created."
+    else
+      render :new
+    end
   end
 
   def update
-    if @klass.update(klass_params)
-      redirect_to @klass, notice: "Class was successfully updated."
+    if klass.update(klass_params)
+      redirect_to teacher_klass_path(teacher), notice: "Class was successfully updated."
     else
       render :edit
     end
   end
 
   def destroy
-    @klass.destroy
-    redirect_to teacher_klasses_path(@klass.teacher_id), notice: "Class was successfully destroyed."
+    if klass.destroy
+      redirect_to teacher_klasses_path(teacher_id), notice: "Class was successfully destroyed."
+    end
   end
 
 private
 
-  def set_klass
-    @klass = Klass.find(params[:id])
+  def klass_id
+    params[:id]
+  end
+
+  def teacher_id
+    params[:teacher_id]
+  end
+
+  def teacher
+    Teacher.find(teacher_id)
+  end
+
+  def klass
+    Klass.find(klass_id)
   end
 
   def klass_params
     params.require(:klass).permit(:name, :time, :level)
+  end
+
+  def klasses
+    Klass.where(teacher_id: teacher_id)
   end
 end

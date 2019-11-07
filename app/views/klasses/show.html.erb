@@ -2,18 +2,18 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @klass.name %>
+  <%= klass.name %>
 </p>
 
 <p>
   <strong>Time:</strong>
-  <%= @klass.time %>
+  <%= klass.time %>
 </p>
 
 <p>
   <strong>Level:</strong>
-  <%= @klass.level %>
+  <%= klass.level %>
 </p>
 
-<%= link_to 'Edit', edit_klass_path(@klass) %> |
-<%= link_to 'Back', klasses_path %>
+<%= link_to 'Edit', edit_teacher_klass_path(teacher, klass) %> |
+<%= link_to 'Back', teacher_klasses_path(teacher) %>

@@ -13,12 +13,13 @@
   </thead>
 
   <tbody>
-    <% @klasses.each do |klass| %>
+    <% klasses.each do |klass| %>
       <tr>
         <td><%= klass.name %></td>
         <td><%= klass.time %></td>
         <td><%= klass.level %></td>
         <td><%= klass.teacher.name %></td>
+        <td><%= link_to "Edit", edit_teacher_klass_path(klass.teacher_id, klass.id) %></td>
         <td><%= link_to "Remove Class", teacher_klass_path(klass.teacher_id, klass.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
