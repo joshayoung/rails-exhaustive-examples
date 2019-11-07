@@ -25,4 +25,6 @@
 * Rspec: https://github.com/rspec/rspec-rails
 
 ## To Do:
-Why is `local: true` required for the validations to render on the form with 'render :new'
+* Why is `local: true` required for the validations to render on the form with 'render :new'
+* Implement a module with a nested class.
+* Implement a class with another nested class.
