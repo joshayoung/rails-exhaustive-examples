@@ -6,17 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 teachers = Teacher.create!([
-  { name: "Joe", age: 31 },
-  { name: "Sally", age: 25 },
-  { name: "Frank", age: 25 },
-  { name: "Sue", age: 27 }
+  { name: "joe", age: 31 },
+  { name: "sally", age: 25 },
+  { name: "frank", age: 25 },
+  { name: "sue", age: 27 }
 ])
 
 Degree.create!(
-  title: "Doctorate of History",
+  title: "doctorate of history",
   level: 3,
-  completed: Date.today - 10.years,
-  from: "Washington University",
+  completed: date.today - 10.years,
+  from: "washington university",
   teacher: teachers.first
 )
 Degree.create!(
