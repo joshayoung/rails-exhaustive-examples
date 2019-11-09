@@ -50,7 +50,7 @@ class StudentsController < ApplicationController
     registrar.klass = klass
     registrar.student = student
 
-    redirect_to root_url if registrar.save
+    redirect_to student_url(student) if registrar.save
   end
 
 private
