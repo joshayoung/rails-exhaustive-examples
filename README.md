@@ -23,8 +23,3 @@
 * Nested Routes with `form_with`: https://stackoverflow.com/questions/46919115/nested-resources-w-rails-5-1-form-with
 * Associations: https://guides.rubyonrails.org/association_basics.html
 * Rspec: https://github.com/rspec/rspec-rails
-
-## To Do:
-* Why is `local: true` required for the validations to render on the form with 'render :new'
-* Implement a module with a nested class.
-* Implement a class with another nested class.
