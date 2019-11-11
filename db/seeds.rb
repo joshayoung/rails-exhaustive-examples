@@ -15,7 +15,7 @@ teachers = Teacher.create!([
 Degree.create!(
   title: "doctorate of history",
   level: 3,
-  completed: date.today - 10.years,
+  completed: Date.today - 10.years,
   from: "washington university",
   teacher: teachers.first
 )
