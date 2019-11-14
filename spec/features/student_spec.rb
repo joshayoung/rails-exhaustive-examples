@@ -78,7 +78,7 @@ RSpec.feature "Students", type: :feature do
         expect(page).to have_content("James")
 
         within("//table/tbody/tr[1]/td[6]") do
-          click_link "destroy"
+          click_link "Destroy"
         end
 
         expect(page).to have_content("Student was successfully destroyed.")

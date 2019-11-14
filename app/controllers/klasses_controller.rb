@@ -15,7 +15,7 @@ class KlassesController < ApplicationController
     @teacher = Teacher.find(params[:teacher_id])
     @klass = @teacher.klasses.new(klass_params)
     if @klass.save
-      redirect_to root_url, notice: "Class was successfully created."
+      redirect_to teacher_klasses_path(@teacher), notice: "Class was successfully created."
     else
       render :new
     end
