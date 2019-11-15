@@ -1,7 +1,7 @@
 class Statistic
   def self.degree_count(teacher_id)
     Degree.joins(:teacher)
-      .where(teacher_id: teacher_id).count
+          .where(teacher_id: teacher_id).count
   end
 
   def students

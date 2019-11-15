@@ -42,7 +42,7 @@ class StudentsController < ApplicationController
   end
 
   def add_classes
-    return if (!params[:klass_id].present?)
+    return unless params[:klass_id].present?
 
     registrar = Registrar.new
     student = Student.find(params[:id])

@@ -9,14 +9,14 @@ class Degree < ApplicationRecord
   validates :title, length: { in: 2..20 }
 
   validates :level, inclusion: { in: [1, 2, 3, 4],
-    message: "%{value} is not a valid size" }
+                                 message: "%<value> is not a valid size" }
 
   validates :level, numericality: { only_integer: true }
 
   validate :completed_date_not_in_future
 
   def last_degree?
-    throw(:abort) if !(number_of_degrees > 1)
+    throw(:abort) unless number_of_degrees > 1
   end
 
   def number_of_degrees
@@ -30,9 +30,6 @@ private
   end
 
   def completed_date_not_in_future
-    if completed >= Date.today
-      # errors.add(:base, "Add errors to the base")
-      errors.add(:completed, "must be a date in the past")
-    end
+    errors.add(:completed, "must be a date in the past") if completed >= Date.today
   end
 end

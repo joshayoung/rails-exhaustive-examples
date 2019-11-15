@@ -3,6 +3,7 @@ class KlassesController < ApplicationController
   helper_method :klass, :klasses, :teacher
 
   def index; end
+
   def show; end
 
   def new
@@ -30,9 +31,7 @@ class KlassesController < ApplicationController
   end
 
   def destroy
-    if klass.destroy
-      redirect_to teacher_klasses_path(teacher_id), notice: "Class was successfully destroyed."
-    end
+    redirect_to teacher_klasses_path(teacher_id), notice: "Class was successfully destroyed." if klass.destroy
   end
 
 private

@@ -19,8 +19,6 @@ class Student < ApplicationRecord
 private
 
   def class_of_in_the_future
-    if class_of <= Date.today
-      errors.add(:class_of, "must be a date in the future")
-    end
+    errors.add(:class_of, "must be a date in the future") if class_of <= Date.today
   end
 end

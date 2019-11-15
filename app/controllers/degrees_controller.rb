@@ -16,7 +16,7 @@ class DegreesController < ApplicationController
 
   def edit; end
 
-  def create # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+  def create
     @teacher = Teacher.find(params[:teacher_id])
     @degree = @teacher.degrees.new(degree_params)
 
