@@ -19,10 +19,15 @@ RSpec.feature "Teachers", type: :feature do
     end
 
     context "when I visit the show page" do
-      it "can see teacher details"
-      it "can see the teacher's students"
-      it "can see the teacher's classes"
-      it "can see the teacher's degrees"
+      before(:each) do
+        Teacher.create(name: "Sam", age: 41)
+      end
+      it "can see teacher details" do
+        visit "teachers/#{Teacher.first.id}"
+
+        expect(page).to have_content("Name: Sam")
+        expect(page).to have_content("Age: 41")
+      end
     end
 
     context "when I visit the edit page" do
@@ -123,7 +128,7 @@ RSpec.feature "Teachers", type: :feature do
         )
       end
 
-      it "show the clases being taught" do
+      it "show the classes being taught" do
         visit "teachers/#{Teacher.first.id}"
 
         expect(page).to have_content("Classes:")
