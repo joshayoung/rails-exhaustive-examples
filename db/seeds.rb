@@ -46,7 +46,7 @@ klasses = Klass.create!([
   { name: "Chemestry 101", time: Date.today, level: 1, teacher: teachers.first },
   { name: "History 201", time: Date.today, level: 2, teacher: teachers[1] },
   { name: "Algebra 301", time: Date.today, level: 3, teacher: teachers[2] },
-  { name: "Physics 401", time: Date.today, level: 4, teacher: teachers[3] }
+  { name: "Physics 401", time: Date.today, level: 4, teacher: teachers[3] }t l:
 ])
 
 Registrar.create!([
