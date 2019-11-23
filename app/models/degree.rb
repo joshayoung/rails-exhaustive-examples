@@ -20,7 +20,7 @@ class Degree < ApplicationRecord
   end
 
   def number_of_degrees
-    Degree.joins(:teacher).where(teacher_id: teacher_id).count
+    Degree.joins(:teacher).where(teacher_id: teacher.id).count
   end
 
 private
