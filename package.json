@@ -6,7 +6,7 @@
   },
   "lint-staged": {
     "{app,spec}/**/*.rb": [
-      "bundle exec rubocop --safe-autocorrect",
+      "bundle exec rubocop",
       "git add"
     ]
   },
